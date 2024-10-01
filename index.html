@@ -3,36 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Cookies</title>
+    <title>Full-Screen Button to Play Audio</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
+        html, body {
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
         }
-
-        video {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
+        #background {
+            height: 100%;
+            width: 100%;
+            background-image: url('image.gif');
+            background-size: cover; /* ensures the image takes up the entire screen */
+            background-position: center; /* centers the image */
+            background-repeat: no-repeat;
+            display: none; /* initially hidden */
+        }
+        #playButton {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: black; /* black button */
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <video id="video" src="video.mp4" controls autoplay muted></video>
 
-    <script>
-        const videoElement = document.getElementById('video');
+<div id="background"></div>
 
-        // Unmute the video after 0.2 seconds
-        setTimeout(() => {
-            videoElement.muted = false;
-        }, 200); // 200 milliseconds = 0.2 seconds
-    </script>
+<audio id="audio" preload="auto">
+    <source src="audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<button id="playButton" onclick="startAudio()"> </button>
+
+<script>
+    function startAudio() {
+        var audio = document.getElementById('audio');
+        var background = document.getElementById('background');
+
+        // Show the background and play the audio
+        background.style.display = 'block';
+        audio.play();
+
+        // Optionally, hide the button after clicking
+        document.getElementById('playButton').style.display = 'none';
+    }
+</script>
+
 </body>
 </html>
