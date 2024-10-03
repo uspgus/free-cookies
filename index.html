@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Screen Button to Play Audio</title>
+    <title>Centered Button to Play Audio</title>
     <style>
         html, body {
             height: 100%;
             margin: 0;
             overflow: hidden; /* Prevent scrolling */
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         #background {
             height: 100%;
             width: 100%;
@@ -18,16 +23,36 @@
             background-position: center; /* centers the image */
             background-repeat: no-repeat;
             display: none; /* initially hidden */
-        }
-        #playButton {
-            position: absolute;
+            position: absolute; /* Make sure the background takes up the entire screen */
             top: 0;
             left: 0;
-            height: 100%;
-            width: 100%;
-            background-color: black; /* black button */
+        }
+
+        #playButton {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color:deepskyblue ; /* semi-transparent background */
             border: none;
             cursor: pointer;
+            border-radius: 10px;
+        }
+
+        #playButton img {
+            width: 50px; /* Set the size of the image */
+            height: 50px;
+            margin-bottom: 10px; /* Space between image and text */
+        }
+
+        #playButton span {
+            color: white; /* Text color */
+            font-size: 20px; /* Text size */
+        }
+
+        #playButton:focus {
+            outline: none; /* Remove the focus outline */
         }
     </style>
 </head>
@@ -40,7 +65,10 @@
     Your browser does not support the audio element.
 </audio>
 
-<button id="playButton" onclick="startAudio()"> </button>
+<!-- Centered button with image and text -->
+<button id="playButton" onclick="startAudio()">
+    <span>Click for Free Cookies! 🍪🍪🍪</span>
+</button>
 
 <script>
     function startAudio() {
@@ -51,7 +79,7 @@
         background.style.display = 'block';
         audio.play();
 
-        // Optionally, hide the button after clicking
+        // Hide the button after clicking
         document.getElementById('playButton').style.display = 'none';
     }
 </script>
